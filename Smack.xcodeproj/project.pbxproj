@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		21E2F8195AB30E95822BEFF3 /* Pods_Smack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F20E9E538D816958535F3C1D /* Pods_Smack.framework */; };
+		354C85E31FD9906E0041C07E /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C85E21FD9906E0041C07E /* UserDataService.swift */; };
 		354ECD6E1FD7CFA400C389FE /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 354ECD6C1FD7CFA400C389FE /* SWRevealViewController.m */; };
 		354ECD731FD7DE9C00C389FE /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354ECD721FD7DE9C00C389FE /* ChatVC.swift */; };
 		354ECD751FD7DEB300C389FE /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354ECD741FD7DEB300C389FE /* ChannelVC.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		354C85E21FD9906E0041C07E /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		354ECD6B1FD7CFA300C389FE /* Smack-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Smack-Bridging-Header.h"; sourceTree = "<group>"; };
 		354ECD6C1FD7CFA400C389FE /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		354ECD6D1FD7CFA400C389FE /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				358BD5231FD949B20012EC0B /* AuthService.swift */,
+				354C85E21FD9906E0041C07E /* UserDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				354ECD751FD7DEB300C389FE /* ChannelVC.swift in Sources */,
 				358BD5261FD964DE0012EC0B /* RoundedButton.swift in Sources */,
 				354ECD731FD7DE9C00C389FE /* ChatVC.swift in Sources */,
+				354C85E31FD9906E0041C07E /* UserDataService.swift in Sources */,
 				354ECD7E1FD8256300C389FE /* CreateAccountVC.swift in Sources */,
 				358BD5241FD949B20012EC0B /* AuthService.swift in Sources */,
 				354ECD7C1FD8226400C389FE /* LoginVC.swift in Sources */,
