@@ -20,6 +20,9 @@ class ChatVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChatVC.handleTap))
+        view.addGestureRecognizer(tap)
+        
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -37,6 +40,10 @@ class ChatVC: UIViewController {
         
         //MessageService.instance.findAllChannel { (success) in
         //}
+    }
+    
+    @objc func handleTap() {
+        view.endEditing(true)
     }
     
     @objc func channelSelected(_ notif: NotificationCenter) {
@@ -82,6 +89,16 @@ class ChatVC: UIViewController {
     }
     
     @IBAction func sendBtnPressed(_ sender: Any) {
+        if AuthService.instance.isLoggedIn {
+            guard let channelId = MessageService.instance.selectedChannel?._id else { return }
+            guard let message = messageTxt.text else { return }
+            
+            SocketService.instance.addMessage(message: message, userId: UserDataService.instance.id, channelId: channelId, completion: { (success) in
+                if success {
+                    self.messageTxt.text = ""
+                    self.messageTxt.resignFirstResponder()
+                }
+            })
+        }
     }
-    
 }
