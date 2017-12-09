@@ -45,4 +45,32 @@ class SocketService: NSObject {
             completion(true)
         }
     }
+    
+    func addMessage(message: String, userId: String, channelId: String, completion: @escaping CompletionHandler) {
+        let user = UserDataService.instance
+        manager.defaultSocket.emit(SOCKET_EVT_NEW_MESSAGE, message, userId, channelId, user.name, user.avatarName, user.avatarColor)
+        completion(true)
+    }
+    
+    func getMessage(completion: @escaping CompletionHandler) {
+        manager.defaultSocket.on(SOCKET_EVT_MESSAGE_CREATED) { (dataArray, ack) in
+            guard let message = dataArray[0] as? String else { return }
+            guard let userId = dataArray[1] as? String else { return }
+            guard let channelId = dataArray[2] as? String else { return }
+            guard let userName = dataArray[3] as? String else { return }
+            guard let userAvatar = dataArray[4] as? String else { return }
+            guard let userAvatarColor = dataArray[5] as? String else { return }
+            guard let id = dataArray[6] as? String else { return }
+            guard let timeStamp = dataArray[7] as? String else { return }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            let date = dateFormatter.date(from: timeStamp)
+            
+            let newMessage = Message(_id: id, messageBody: message, userId: userId, channelId: channelId, userName: userName, userAvatar: userAvatar, userAvatarColor: userAvatarColor, __v: nil, timestamp: date)
+            
+            MessageService.instance.messages.append(newMessage)
+            completion(true)
+        }
+    }
 }
