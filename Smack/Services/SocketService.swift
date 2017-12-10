@@ -52,7 +52,7 @@ class SocketService: NSObject {
         completion(true)
     }
     
-    func getMessage(completion: @escaping CompletionHandler) {
+    func getMessage(completion: @escaping (_ newMassage: Message) -> Void) {
         manager.defaultSocket.on(SOCKET_EVT_MESSAGE_CREATED) { (dataArray, ack) in
             guard let message = dataArray[0] as? String else { return }
             guard let userId = dataArray[1] as? String else { return }
@@ -62,15 +62,18 @@ class SocketService: NSObject {
             guard let userAvatarColor = dataArray[5] as? String else { return }
             guard let id = dataArray[6] as? String else { return }
             guard let timeStamp = dataArray[7] as? String else { return }
+          
+            let newMessage = Message(_id: id, messageBody: message, userId: userId, channelId: channelId, userName: userName, userAvatar: userAvatar, userAvatarColor: userAvatarColor, __v: nil, timeStamp: timeStamp)
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            let date = dateFormatter.date(from: timeStamp)
-            
-            let newMessage = Message(_id: id, messageBody: message, userId: userId, channelId: channelId, userName: userName, userAvatar: userAvatar, userAvatarColor: userAvatarColor, __v: nil, timestamp: date)
-            
-            MessageService.instance.messages.append(newMessage)
-            completion(true)
+            //MessageService.instance.messages.append(newMessage)
+            completion(newMessage)
+        }
+    }
+    
+    func getTypingUsers(_ completionHandler: @escaping (_ typingUsers: [String: String]) -> Void) {
+        manager.defaultSocket.on(SOCKET_EVT_USER_TYPING_UPD) { (dataArray, ack) in
+            guard let typingUsers = dataArray[0] as? [String: String] else { return }
+            completionHandler(typingUsers)
         }
     }
 }

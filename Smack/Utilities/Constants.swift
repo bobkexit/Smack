@@ -24,6 +24,9 @@ let SOCKET_EVT_NEW_CHANNEL = "newChannel"
 let SOCKET_EVT_CHANNEL_CREATED = "channelCreated"
 let SOCKET_EVT_NEW_MESSAGE = "newMessage"
 let SOCKET_EVT_MESSAGE_CREATED = "messageCreated"
+let SOCKET_EVT_START_TYPE = "startType"
+let SOCKET_EVT_STOP_TYPE = "stopType"
+let SOCKET_EVT_USER_TYPING_UPD = "userTypingUpdate"
 
 // Colors
 let SMACK_PURPLE_PLACEHOLDER = #colorLiteral(red: 0.2588235294, green: 0.3294117647, blue: 0.7254901961, alpha: 0.5)
@@ -37,7 +40,6 @@ let NOTIF_CHANNEL_SELECTED = Notification.Name("channelSelected")
 let TO_LOGIN = "toLogin"
 let TO_CREATE_ACCOUNT = "toCreateAccount"
 let TO_AVATAR_PICKER = "toAvatarPicker"
-
 let UNWIND = "unwindToChannel"
 
 // User Defaults
@@ -54,5 +56,8 @@ let BEARER_HEADER = [
     "Content-Type": "application/json; charset=utf-8"
 ]
 
+//UI
+let DEFAULT_FONT = "HelveticaNeue"
+let DEFAULT_FONT_SIZE: CGFloat = 17
 
 
