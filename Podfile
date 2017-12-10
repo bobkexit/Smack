@@ -9,5 +9,5 @@ target 'Smack' do
   pod 'Alamofire', '~> 4.5'
   pod 'SwiftyJSON'
   pod 'Socket.IO-Client-Swift', '~> 13.1.0'
-
+  pod 'IQKeyboardManagerSwift'
 end
