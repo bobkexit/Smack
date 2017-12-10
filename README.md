@@ -1,2 +1,2 @@
-# Smack
-Slack Clone
+# Smack Demo
+Clone of Slack Chat
